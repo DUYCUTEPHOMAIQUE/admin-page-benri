@@ -17,6 +17,8 @@ export const getRecipes = async () => {
     const response = await axios.get(`${API_URL}/recipe/all-noshuff`, {
       headers: {
         "content-type": "application/json",
+        Pragma: "no-cache",
+        "Cache-Control": "no-cache",
       },
     });
     return response.data.metadata;
@@ -41,9 +43,12 @@ export const getUsers = async () => {
 
 export const deleteRecipe = async (recipeId) => {
   try {
-    const response = await axios.delete(`${API_URL}/recipe/${recipeId}/admin`, {
-      headers: getAuthHeaders(),
-    });
+    const response = await axios.delete(
+      `${API_URL}/recipe/${recipeId}/admin?role=admin`,
+      {
+        headers: getAuthHeaders(),
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error deleting recipe:", error);

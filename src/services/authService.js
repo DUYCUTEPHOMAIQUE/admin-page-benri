@@ -36,6 +36,7 @@ export const getUserInfo = () => {
 };
 
 export const login = async (email, password) => {
+  console.log(API_URL);
   try {
     const response = await axios.post(`${API_URL}/login`, {
       email,
