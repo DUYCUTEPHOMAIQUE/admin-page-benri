@@ -9,7 +9,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const success = await login(email, password);
+    const { success } = await login(email, password);
+    console.log(success);
     if (success) {
       navigate("/dashboard");
     } else {
